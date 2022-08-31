@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Route;
 Route::namespace ('App\Http\Controllers\manager')->middleware('cors')->group(function () {
     Route::get('/SysUser/getCaptcha', [SysUserController::class, 'getCaptcha'])->name('SysUser.getCaptcha');
     Route::post('/SysUser/getList', [SysUserController::class, 'getList'])->name('SysUser.getList');
+    Route::post('/SysUser/publicKey', [SysUserController::class, 'publicKey'])->name('SysUser.publicKey');
+    Route::post('/SysUser/login', [SysUserController::class, 'login'])->name('SysUser.login');
 
     // Route::get('/profile', function () {
     //     //

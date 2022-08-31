@@ -3,6 +3,7 @@ import * as rule from '@/utils/rule.js';
 
 import axios from 'axios';
 import { baseURL } from '@/config';
+import * as login from '@/api/login.js';
 
 export default {
   name: 'Login',
@@ -22,6 +23,7 @@ export default {
         password: '',
         code: '',
         uuid: '',
+        key: '',
       },
       rules: {
         username: [
@@ -71,31 +73,37 @@ export default {
     },
 
     // 获取验证码
-    getCaptcha() {
-      axios
-        .get(baseURL + '/manager/SysUser/getCaptcha', {
-          responseType: 'arraybuffer',
-        })
-        .then((res) => {
-          this.form.uuid = res.headers.uuid; // 验证码uuid
+    async getCaptcha() {
+      const { data } = await login.getCaptcha();
+      if (data) {
+        // this.form.key = data.key;
+        this.captcha = data.img;
+      }
 
-          // 把二进制流转为base64
-          return (
-            'data:image/jpeg;base64,' +
-            btoa(
-              new Uint8Array(res.data).reduce(
-                (data, byte) => data + String.fromCharCode(byte),
-                ''
-              )
-            )
-          );
-        })
-        .then((data) => {
-          this.captcha = data;
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      // axios
+      //   .get(baseURL + '/manager/SysUser/getCaptcha', {
+      //     responseType: 'arraybuffer',
+      //   })
+      //   .then((res) => {
+      //     this.form.uuid = res.headers.uuid; // 验证码uuid
+
+      //     // 把二进制流转为base64
+      //     return (
+      //       'data:image/jpeg;base64,' +
+      //       btoa(
+      //         new Uint8Array(res.data).reduce(
+      //           (data, byte) => data + String.fromCharCode(byte),
+      //           ''
+      //         )
+      //       )
+      //     );
+      //   })
+      //   .then((data) => {
+      //     this.captcha = data;
+      //   })
+      //   .catch((error) => {
+      //     console.error(error);
+      //   });
     },
 
     // 登录

@@ -34,6 +34,9 @@
         },
         "files": [
             "app/Http/Controllers/common.php"
+        ],
+        "classmap": [
+            "app/Extend/rsa"
         ]
     },
     "autoload-dev": {

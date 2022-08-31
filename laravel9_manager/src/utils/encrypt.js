@@ -33,6 +33,8 @@ export async function encryptedData(data) {
   };
 }
 
+export function encryptedDataExcept(data, exceptFieldAry = []) {}
+
 /**
  * @author chuzhixin 1204505056@qq.com （不想保留author可删除）
  * @description RSA解密
