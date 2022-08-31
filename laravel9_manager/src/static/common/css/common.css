@@ -1,0 +1,9 @@
+.searchText {
+  display: inline-block;
+  width: 240px;
+}
+
+.searchBtn {
+  display: inline-block;
+  margin-left: 10px;
+}

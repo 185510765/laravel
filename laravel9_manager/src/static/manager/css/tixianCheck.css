@@ -1,0 +1,27 @@
+/* .searchText {
+  display: inline-block;
+  width: 240px;
+}
+
+.searchBtn {
+  display: inline-block;
+  margin-left: 10px;
+} */
+
+.details-left {
+  float: left;
+  width: 50%;
+}
+
+.details-right {
+  float: right;
+  width: 50%;
+}
+
+.bank_licence_img {
+  position: relative;
+  top: 5px;
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+}

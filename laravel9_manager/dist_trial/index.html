@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="zh-cmn-Hans"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="favicon.ico"><title>花样工厂管理后台</title><meta name="keywords" content=""><meta name="description" content=""><meta name="author" content=""><link rel="stylesheet" href="static/css/loading.css"><link href="static/css/vab-layouts.6791fcb2.css" rel="stylesheet"><link href="static/css/element-ui.0e3a750b.css" rel="stylesheet"><link href="static/css/app.7ebba063.css" rel="stylesheet"></head><body><noscript>非常抱歉鉴于安全考量,您无法查看本系统的源代码</noscript><div id="vue-admin-beautiful"><div class="first-loading-wrp"><div class="loading-wrp"><span class="dot dot-spin"><i></i> <i></i> <i></i> <i></i></span></div><h1>花样工厂管理后台</h1></div></div><script>/^http(s*):\/\//.test(location.href) ||
+        alert('项目需要部署到服务器下访问');</script><script>// 安全措施： 浏览器关闭或标签页关闭 登录状态退出 每次都得重新登录
+
+      // 进入页面执行
+      // 记录当前时间并转成时间戳
+      const now = new Date().getTime();
+      // 从缓存中获取用户上次退出的时间戳
+      const leaveTime = parseInt(localStorage.getItem('leaveTime'), 10);
+      // 判断是否为刷新，两次间隔在2s内判定为刷新操作
+      const refresh = now - leaveTime <= 2000;
+      // 测试alert
+      // alert(refresh ? '刷新' : '重新登陆');
+
+      // 是 重新登录 清空之前的登录状态
+      if (!refresh) {
+        localStorage.removeItem('Authorization');
+        location.reload();
+      }
+
+      window.onbeforeunload = function () {
+        // console.log(111111111);
+      };
+
+      // 退出当前页面执行
+      window.onunload = function (e) {
+        // ios 不支持 window.onbeforeunload()
+        // 将退出时间存于localstorage中
+        localStorage.setItem('leaveTime', new Date().getTime());
+      };
+
+      // *********************************************************************
+
+      if (window.location.hostname !== 'localhost') {
+        var _hmt = _hmt || [];
+        (function () {
+          var hm = document.createElement('script');
+          hm.src =
+            'https://hm.baidu.com/hm.js?7174bade1219f9cc272e7978f9523fc8';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }</script><script src="static/js/vab-layouts.0e85651d.js"></script><script src="static/js/element-ui.6ad27ad1.js"></script><script src="static/js/app.fe37673b.js"></script></body></html>
