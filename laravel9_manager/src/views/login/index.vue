@@ -19,7 +19,7 @@
           label-position="left"
         >
           <div class="title">hello !</div>
-          <div class="title-tips">欢迎来到{{ title }}！</div>
+          <div class="title-tips">欢迎来到{{ title }}！ laravel9</div>
           <el-form-item style="margin-top: 40px" prop="username">
             <span class="svg-container svg-container-admin">
               <vab-icon :icon="['fas', 'user']" />

@@ -10,8 +10,6 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build:trial": "vue-cli-service build && xcopy D:\\xampp\\htdocs\\game_api\\smallGameManager\\dist_trial\\* D:\\xampp\\htdocs\\game_api\\smallGame\\public\\dist_trial /E/H/C/I",
-    "build:produ": "vue-cli-service build && xcopy D:\\xampp\\htdocs\\game_api\\smallGameManager\\dist_produ\\* D:\\xampp\\htdocs\\game_api\\smallGame\\public\\dist_produ /E/H/C/I",
     "push1:debug1": "vue-cli-service build --mode debug && scp -r dist/* xiangyong@47.101.69.179:/mydata/var/www/html/funplayManager",
     "push1:release1": "vue-cli-service build && scp -r dist/* www@47.104.137.179:/mydata/var/www/html/funplayManager",
     "build1:report": "vue-cli-service build --report",
