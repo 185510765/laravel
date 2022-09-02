@@ -38,7 +38,7 @@ class SysUserController extends Controller
             return error($resAry['message']);
         }
 
-        // 登录后的操作
+        // 校验成功后的操作
         $userinfo = $resAry['data']['userinfo'];
         $jwt      = SysUserService::loginSuccessTodo($userinfo);
 
