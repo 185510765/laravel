@@ -2,10 +2,10 @@
 
 namespace App\Models\manager;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\manager\BaseModel;
 
-class User extends Model
+class User extends BaseModel
 {
-    use HasFactory;
+    protected $table      = 'user';
+    protected $primaryKey = 'id';
 }

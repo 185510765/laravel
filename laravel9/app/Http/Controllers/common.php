@@ -6,23 +6,21 @@ function restful($code, $msg, $data = [])
         'code'    => $code,
         'message' => $msg,
         'data'    => $data,
-    ]);
+    ], JSON_UNESCAPED_UNICODE);
+
+    // return response()->json([
+    //     'code'    => $code,
+    //     'message' => $msg,
+    //     'data'    => $data,
+    // ]);
 }
 
 function success($data = [])
 {
-    return response()->json([
-        'code' => 200,
-        'msg'  => 'success',
-        'data' => $data,
-    ]);
+    return restful(200, 'success', $data);
 }
 
 function error($msg = 'error')
 {
-    return response()->json([
-        'code' => 500,
-        'msg'  => $msg,
-        'data' => [],
-    ]);
+    return restful(500, $msg);
 }

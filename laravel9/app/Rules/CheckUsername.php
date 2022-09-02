@@ -4,7 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class Uppercase implements Rule
+class CheckUsername implements Rule
 {
     /**
      * Create a new rule instance.
@@ -23,7 +23,8 @@ class Uppercase implements Rule
      */
     public function passes($attribute, $value)
     {
-        return strtoupper($value) === $value;
+        $pattern = '/^[A-Za-z0-9_]{5,}$/';
+        return preg_match($pattern, $value);
     }
 
     /**
@@ -32,8 +33,7 @@ class Uppercase implements Rule
      */
     public function message()
     {
-        // return 'The :attribute must be uppercase.';
-        return ':attribute输入字段中包含敏感词';
+        return ':attribute 只能包含英文、字母、下划线';
     }
 
     /**
@@ -44,9 +44,8 @@ class Uppercase implements Rule
     public function attributes()
     {
         return [
-            'title'   => '标题',
-            'url'     => 'URL',
-            'picture' => '图片',
+            'username' => '用户名',
+            // 'url'      => 'URL',
         ];
     }
 

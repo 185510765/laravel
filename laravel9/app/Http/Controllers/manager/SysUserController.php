@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\manager;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\manager\SysUserLoginRequest;
+use App\Services\manager\SysUserService;
 use Mews\Captcha\Facades\Captcha;
 
 class SysUserController extends Controller
@@ -23,15 +25,20 @@ class SysUserController extends Controller
     }
 
     // 登录
-    public function login()
+    public function login(SysUserLoginRequest $request)
     {
-        // rsa解密
-        $param = request()->input('param');
+        $params = $request->input();
 
-        $Rsa   = new \Rsa\Rsa(config('rsa.publicKey'), config('rsa.privateKey'));
-        $param = json_decode($Rsa->priv_decode($param), true);
+        // 校验登录
+        $validateResStr = SysUserService::checkLogin($params);
+        $validateResAry = json_decode($validateResStr, true);
+        if ($validateResAry['code'] == 500) {
+            return error($validateResAry['message']);
+        }
 
-        return success($param);
+        // 登录后的操作
+
+        return success();
     }
 
 }

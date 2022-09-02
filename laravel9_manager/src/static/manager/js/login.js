@@ -76,7 +76,7 @@ export default {
     async getCaptcha() {
       const { data } = await login.getCaptcha();
       if (data) {
-        // this.form.key = data.key;
+        this.form.key = data.key;
         this.captcha = data.img;
       }
 

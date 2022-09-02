@@ -8,12 +8,53 @@ const publicKey =
   'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAobxSoRBaCJaLwIMEwmvZO7MTtNhH1AZZqCns72IjVI0HSvW5KtiunXYVAnmY6SJ1grbK8TSw/Fe67JoGvMR6AIzYiFtAkl531zrieDC3X89psucsOqYn0Az7Ie6dp2z+u40sam1gr9s/5hsqxUVtnIpYvxOn713wTu6YUig6Nhpeipb2rJwVmnlV94D+BtmC6ElqZ+3idLNLy4Z63sFVvCh9rTkO1XCf4k9MfPvbZjH/wVYEEm1UFKZ7XBqDe9fpM6OsSWpxekDjLHn5od2p9B9YXZm3mGD0s7/6mnMV/hsqcMfD9nkC/FkRmoqmIBq+lFkMfXgdQ1O+vlijH26+gQIDAQAB';
 
 /**
+ * RSA加密 排除某些字段不加密
+ * @param {*} data
+ * @param {*} exceptFieldAry
+ * @return {*}
+ */
+export async function encryptedData(data, exceptFieldAry = []) {
+  let publicKey = '';
+  const res = await getPublicKey();
+  publicKey = res.data.publicKey;
+  if (res.data.mockServer) {
+    publicKey = '';
+  }
+  if (publicKey == '') {
+    return data;
+  }
+  const encrypt = new JSEncrypt();
+  encrypt.setPublicKey(
+    `-----BEGIN PUBLIC KEY-----${publicKey}-----END PUBLIC KEY-----`
+  );
+
+  // 是否有加密排除字段
+  let returnObj = {};
+
+  if (exceptFieldAry.length > 0) {
+    Object.keys(data).forEach((element, index) => {
+      exceptFieldAry.forEach((value, key) => {
+        if (element == value) {
+          returnObj[element] = data[element];
+          delete data[element];
+        }
+      });
+    });
+  }
+
+  data = encrypt.encrypt(JSON.stringify(data));
+  returnObj.param = data;
+
+  return returnObj;
+}
+
+/**
  * @author chuzhixin 1204505056@qq.com （不想保留author可删除）
  * @description RSA加密
  * @param data
  * @returns {Promise<{param: PromiseLike<ArrayBuffer>}|*>}
  */
-export async function encryptedData(data) {
+export async function encryptedData_bak(data) {
   let publicKey = '';
   const res = await getPublicKey();
   publicKey = res.data.publicKey;
@@ -32,8 +73,6 @@ export async function encryptedData(data) {
     param: data,
   };
 }
-
-export function encryptedDataExcept(data, exceptFieldAry = []) {}
 
 /**
  * @author chuzhixin 1204505056@qq.com （不想保留author可删除）

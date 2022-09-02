@@ -1,10 +1,10 @@
 import request from '@/utils/request';
 import { encryptedData } from '@/utils/encrypt';
-import { loginRSA, tokenName } from '@/config';
+import { loginRSA, rsaExceptField, tokenName } from '@/config';
 
 export async function login(data) {
   if (loginRSA) {
-    data = await encryptedData(data);
+    data = await encryptedData(data, rsaExceptField);
   }
   return request({
     url: '/manager/SysUser/login',
