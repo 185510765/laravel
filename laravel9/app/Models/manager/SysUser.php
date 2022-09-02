@@ -3,9 +3,12 @@
 namespace App\Models\manager;
 
 use App\Models\manager\BaseModel;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SysUser extends BaseModel
 {
+    use SoftDeletes;
+
     protected $table      = 'sys_user';
     protected $primaryKey = 'id';
 
@@ -36,5 +39,11 @@ class SysUser extends BaseModel
     protected $casts = [
         // 'is_admin' => 'boolean',
     ];
+
+    // 密码加密
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
 
 }

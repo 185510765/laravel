@@ -25,6 +25,7 @@ Route::namespace ('App\Http\Controllers\manager')->middleware('cors')->group(fun
     Route::post('/SysUser/getList', [SysUserController::class, 'getList'])->name('SysUser.getList');
     Route::post('/SysUser/publicKey', [SysUserController::class, 'publicKey'])->name('SysUser.publicKey');
     Route::post('/SysUser/login', [SysUserController::class, 'login'])->name('SysUser.login');
+    Route::post('/SysUser/register', [SysUserController::class, 'register'])->name('SysUser.register');
 
     // Route::get('/profile', function () {
     //     //
