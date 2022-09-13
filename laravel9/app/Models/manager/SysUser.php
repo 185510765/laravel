@@ -4,10 +4,11 @@ namespace App\Models\manager;
 
 use App\Models\manager\BaseModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Sanctum\HasApiTokens;
 
 class SysUser extends BaseModel
 {
-    use SoftDeletes;
+    use SoftDeletes, HasApiTokens;
 
     protected $table      = 'sys_user';
     protected $primaryKey = 'id';

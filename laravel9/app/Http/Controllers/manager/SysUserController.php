@@ -26,29 +26,6 @@ class SysUserController extends Controller
         ]);
     }
 
-    // 登录
-    public function login(SysUserLoginRequest $request)
-    {
-        $params = $request->input();
-
-        // 校验登录
-        $resStr = SysUserService::checkLogin($params);
-        $resAry = json_decode($resStr, true);
-        if ($resAry['code'] == 500) {
-            return error($resAry['message']);
-        }
-
-        // 校验成功后的操作
-        $userinfo = $resAry['data']['userinfo'];
-        $jwt      = SysUserService::loginSuccessTodo($userinfo);
-
-        return success([
-            'Authorization' => $jwt,
-        ]);
-    }
-
-    // ************************** 测试 **************************************
-
     // 注册
     public function register(SysUserRegisterRequest $request)
     {
@@ -56,5 +33,63 @@ class SysUserController extends Controller
 
         return success();
     }
+
+    // 登录
+    public function login(SysUserLoginRequest $request)
+    {
+        $params = $request->input();
+
+        $sysUser = SysUser::where('username', $params['username'])->first();
+
+        // 校验登录
+        $resStr = SysUserService::checkLogin($params, $sysUser);
+        $resAry = json_decode($resStr, true);
+        if ($resAry['code'] == 500) {
+            return error($resAry['message']);
+        }
+
+        // 校验成功后的操作
+        SysUserService::loginSuccessTodo($sysUser);
+
+        $token = 'Bearer ' . $sysUser->createToken($sysUser->username)->plainTextToken;
+
+        return success([
+            'Authorization' => $token,
+        ]);
+    }
+
+    // 获取用户信息
+    public function userInfo()
+    {
+
+        dump(auth()->user()->username);
+        dump(request()->user()->id);
+
+        return success([
+            'user_id'     => 10000,
+            'username'    => '测试名称',
+            'permissions' => ['manager'],
+            'avatar'      => 'https://i.gtimg.cn/club/item/face/img/2/15922_100.gif',
+        ]);
+    }
+
+    // 退出
+    public function logout()
+    {
+        auth()->user()->tokens()->delete();
+
+        return success();
+
+        // // 撤销所有令牌...
+        // $user->tokens()->delete();
+
+        // // 撤销用于验证当前请求的令牌...
+        // $request->user()->currentAccessToken()->delete();
+
+        // // 撤销指定令牌...
+        // $user->tokens()->where('id', $tokenId)->delete();
+    }
+
+    // ************************** 测试 **************************************
 
 }

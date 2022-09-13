@@ -40,12 +40,14 @@ class Kernel extends HttpKernel
         ],
 
         'api'     => [
+            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
         'manager' => [
+            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             \Fruitcake\Cors\HandleCors::class,
 
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
@@ -77,6 +79,9 @@ class Kernel extends HttpKernel
         'signed'           => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle'         => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified'         => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'cors'             => \Fruitcake\Cors\HandleCors::class,
+
+        'cors'             => \Fruitcake\Cors\HandleCors::class, // 跨域
+        'abilities'        => \Laravel\Sanctum\Http\Middleware\CheckAbilities::class, // Laravel Sanctum 令牌
+        'ability'          => \Laravel\Sanctum\Http\Middleware\CheckForAnyAbility::class, // Laravel Sanctum 令牌
     ];
 }

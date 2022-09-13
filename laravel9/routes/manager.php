@@ -14,18 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-// // Route::namespace ('App\Http\Controllers\manager')->prefix('v1')->group(function () {
-// Route::namespace ('App\Http\Controllers\manager')->group(function () {
-//     Route::get('/SysUser/getCaptcha', [SysUserController::class, 'getCaptcha'])->name('SysUser.getCaptcha');
-//     Route::post('/SysUser/getList', [SysUserController::class, 'getList'])->name('SysUser.getList');
-// });
-
-Route::namespace ('App\Http\Controllers\manager')->middleware('cors')->group(function () {
-    Route::post('/SysUser/getCaptcha', [SysUserController::class, 'getCaptcha'])->name('SysUser.getCaptcha');
-    Route::post('/SysUser/getList', [SysUserController::class, 'getList'])->name('SysUser.getList');
-    Route::post('/SysUser/publicKey', [SysUserController::class, 'publicKey'])->name('SysUser.publicKey');
-    Route::post('/SysUser/login', [SysUserController::class, 'login'])->name('SysUser.login');
-    Route::post('/SysUser/register', [SysUserController::class, 'register'])->name('SysUser.register');
+Route::namespace ('App\Http\Controllers\manager')->middleware(['cors', 'auth:sanctum'])->group(function () {
+    Route::post('/SysUser/getCaptcha', [SysUserController::class, 'getCaptcha'])->name('SysUser.getCaptcha')->withoutMiddleware(['auth:sanctum']);
+    Route::post('/SysUser/publicKey', [SysUserController::class, 'publicKey'])->name('SysUser.publicKey')->withoutMiddleware(['auth:sanctum']);
+    Route::post('/SysUser/login', [SysUserController::class, 'login'])->name('SysUser.login')->withoutMiddleware(['auth:sanctum']);
+    Route::post('/SysUser/register', [SysUserController::class, 'register'])->name('SysUser.register')->withoutMiddleware(['auth:sanctum']);
+    Route::post('/SysUser/userInfo', [SysUserController::class, 'userInfo'])->name('SysUser.userInfo');
 
     // Route::get('/profile', function () {
     //     //
