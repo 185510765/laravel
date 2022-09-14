@@ -24,3 +24,9 @@ function error($msg = 'error')
 {
     return restful(500, $msg);
 }
+
+// 不为空
+function isEmpty($str)
+{
+    return $str === '' || $str === null;
+}

@@ -1,7 +1,8 @@
-<?php 
+<?php
 
 namespace App\Services\manager;
 
-class UserMinerService {
-    
+class UserMinerService
+{
+
 }

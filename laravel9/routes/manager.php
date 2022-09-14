@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\manager\SysUserController;
+use App\Http\Controllers\manager\UserMinerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +22,6 @@ Route::namespace ('App\Http\Controllers\manager')->middleware(['cors', 'auth:san
     Route::post('/SysUser/register', [SysUserController::class, 'register'])->name('SysUser.register')->withoutMiddleware(['auth:sanctum']);
     Route::post('/SysUser/userInfo', [SysUserController::class, 'userInfo'])->name('SysUser.userInfo');
 
-    // Route::get('/profile', function () {
-    //     //
-    // })->withoutMiddleware([EnsureTokenIsValid::class]);
+    Route::post('/UserMiner/getMinerList', [UserMinerController::class, 'getMinerList'])->name('UserMiner.getMinerList');
+    Route::post('/UserMiner/getLevelMiner', [UserMinerController::class, 'getLevelMiner'])->name('UserMiner.getLevelMiner');
 });

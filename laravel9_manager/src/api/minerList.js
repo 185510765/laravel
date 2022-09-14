@@ -8,9 +8,24 @@ export function getMinerList(data) {
   });
 }
 
+export function getLevelMiner() {
+  return request({
+    url: '/manager/UserMiner/getLevelMiner',
+    method: 'post',
+  });
+}
+
 export function changeLevel(data) {
   return request({
     url: '/manager/UserMiner/changeLevel',
+    method: 'post',
+    data,
+  });
+}
+
+export function testGold(data) {
+  return request({
+    url: '/manager/UserMiner/testGold',
     method: 'post',
     data,
   });

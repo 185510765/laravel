@@ -5,13 +5,15 @@ import * as rule from '@/utils/rule.js';
 export default {
   data() {
     return {
+      minerCount: {},
+
       index: {
         queryForm: {
           level: '',
           status: '',
           searchText: '',
-          currentPage: 1,
-          pageSize: 10,
+          page: 1,
+          size: 10,
         },
 
         table: {
@@ -40,8 +42,8 @@ export default {
         queryForm: {
           user_id: 0,
           searchText: '',
-          currentPage: 1,
-          pageSize: 10,
+          page: 1,
+          size: 10,
         },
 
         table: {
@@ -92,10 +94,50 @@ export default {
         { label: '挖矿中', value: 1 },
         { label: '被抓', value: 2 },
       ],
+
+      // 模拟
+      test: {
+        dialog: {
+          title: 0,
+          visible: false,
+        },
+
+        form: {
+          num: 10,
+          level: 1,
+          time: 1,
+        },
+        formRules: {},
+      },
+
+      numList: [
+        { label: '1', value: 1 },
+        { label: '3', value: 3 },
+        { label: '5', value: 5 },
+        { label: '10', value: 10 },
+      ],
+
+      timeList: [
+        { label: '1', value: 1 },
+        { label: '2', value: 2 },
+        { label: '3', value: 3 },
+        { label: '4', value: 4 },
+        { label: '5', value: 5 },
+        { label: '6', value: 6 },
+        { label: '7', value: 7 },
+        { label: '8', value: 8 },
+      ],
     };
   },
   mounted() {
+    this.getLevelMiner();
     this.getMinerList();
+  },
+  computed: {
+    btnIsShow() {
+      const permissions = this.$store.state.user.permissions;
+      return permissions.indexOf('manager') != -1;
+    },
   },
   methods: {
     // 表头样式设置
@@ -116,6 +158,14 @@ export default {
       return '';
     },
 
+    // 获取各种类型矿工数量
+    async getLevelMiner() {
+      const { data } = await minerList.getLevelMiner();
+      if (data) {
+        this.minerCount = data;
+      }
+    },
+
     // 获取矿工列表
     async getMinerList() {
       this.index.table.loading = true;
@@ -129,19 +179,19 @@ export default {
 
     // 搜索
     index_handleQuery() {
-      this.index.queryForm.currentPage = 1;
+      this.index.queryForm.page = 1;
       this.getMinerList();
     },
 
     // 页码切换
     index_currentChange(val) {
-      this.index.queryForm.currentPage = val;
+      this.index.queryForm.page = val;
       this.getMinerList();
     },
 
     // 每页数量改变
     index_sizeChange(val) {
-      this.index.queryForm.pageSize = val;
+      this.index.queryForm.size = val;
       this.getMinerList();
     },
 
@@ -172,6 +222,18 @@ export default {
         this.miner.dialog.visible = false;
         this.$baseMessage('修改成功', 'success');
         this.getMinerList();
+      }
+    },
+
+    // 模拟挖矿dialog
+    showTestGoldDialog() {
+      this.test.dialog.visible = true;
+    },
+
+    // 开始模拟挖矿
+    async testGold() {
+      const { data } = await minerList.testGold(this.test.form);
+      if (data) {
       }
     },
   },

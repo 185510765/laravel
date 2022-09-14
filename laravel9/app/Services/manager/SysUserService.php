@@ -2,6 +2,7 @@
 
 namespace App\Services\manager;
 
+use App\Models\manager\SysUser;
 use Illuminate\Support\Facades\Hash;
 
 class SysUserService
@@ -28,7 +29,7 @@ class SysUserService
     }
 
     // 登录成功后的操作
-    public function loginSuccessTodo($sysUser)
+    public function loginSuccessTodo(SysUser $sysUser)
     {
 
     }

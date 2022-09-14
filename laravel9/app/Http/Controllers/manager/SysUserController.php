@@ -61,13 +61,11 @@ class SysUserController extends Controller
     // 获取用户信息
     public function userInfo()
     {
-
-        dump(auth()->user()->username);
-        dump(request()->user()->id);
+        $userinfo = auth()->user();
 
         return success([
-            'user_id'     => 10000,
-            'username'    => '测试名称',
+            'user_id'     => $userinfo->id,
+            'username'    => $userinfo->username,
             'permissions' => ['manager'],
             'avatar'      => 'https://i.gtimg.cn/club/item/face/img/2/15922_100.gif',
         ]);
