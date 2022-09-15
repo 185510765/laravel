@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\manager;
+namespace App\Http\Requests\manager\SysUser;
 
 use App\Http\Requests\manager\BaseRequest;
 use App\Rules\CheckUsername;
 
-class SysUserLoginRequest extends BaseRequest
+class LoginRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.

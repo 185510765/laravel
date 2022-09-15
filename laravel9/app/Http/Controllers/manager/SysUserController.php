@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\manager;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\manager\SysUserLoginRequest;
-use App\Http\Requests\manager\SysUserRegisterRequest;
+use App\Http\Requests\manager\SysUser\LoginRequest;
+use App\Http\Requests\manager\SysUser\RegisterRequest;
 use App\Models\manager\SysUser;
 use App\Services\manager\SysUserService;
 use Mews\Captcha\Facades\Captcha;
@@ -27,7 +27,7 @@ class SysUserController extends Controller
     }
 
     // 注册
-    public function register(SysUserRegisterRequest $request)
+    public function register(RegisterRequest $request)
     {
         SysUser::create($request->input());
 
@@ -35,7 +35,7 @@ class SysUserController extends Controller
     }
 
     // 登录
-    public function login(SysUserLoginRequest $request)
+    public function login(LoginRequest $request)
     {
         $params = $request->input();
 

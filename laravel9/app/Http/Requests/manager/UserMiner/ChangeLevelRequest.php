@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\manager;
+namespace App\Http\Requests\manager\UserMiner;
 
 use App\Http\Requests\manager\BaseRequest;
 
-class UserMienrChangeLevelRequest extends BaseRequest
+class ChangeLevelRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
