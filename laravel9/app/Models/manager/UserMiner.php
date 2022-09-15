@@ -2,14 +2,11 @@
 
 namespace App\Models\manager;
 
+use App\Models\manager\BaseModel;
 use App\Models\manager\User;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class UserMiner extends Model
+class UserMiner extends BaseModel
 {
-    use HasFactory;
-
     protected $table      = 'user_miner';
     protected $primaryKey = 'id';
 
@@ -40,6 +37,11 @@ class UserMiner extends Model
     protected $casts = [
         // 'is_admin' => 'boolean',
     ];
+
+    public function getCreateTimeAttribute($value)
+    {
+        return $value ? date('Y-m-d H:i:s', $value) : '';
+    }
 
     public function user()
     {

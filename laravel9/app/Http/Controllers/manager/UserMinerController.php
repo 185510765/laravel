@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\manager;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\manager\UserMienrChangeLevelRequest;
 use App\Http\Requests\manager\UserMinerGetMinerList;
 use App\Models\manager\UserMiner;
 
@@ -68,4 +69,11 @@ class UserMinerController extends Controller
             'list'  => $paginate->items(),
         ]);
     }
+
+    // 修改矿工等级
+    public function changeLevel(UserMienrChangeLevelRequest $request)
+    {
+        $params = $request->input();
+    }
+
 }

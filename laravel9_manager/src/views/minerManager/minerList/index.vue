@@ -114,7 +114,7 @@
             :show-overflow-tooltip="true"
           ></el-table-column>
           <el-table-column
-            prop="nick_name"
+            prop="user.nick_name"
             label="玩家昵称"
             min-width="8%"
             :show-overflow-tooltip="true"
