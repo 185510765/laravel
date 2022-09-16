@@ -25,4 +25,5 @@ Route::namespace ('App\Http\Controllers\manager')->middleware(['cors', 'auth:san
     Route::post('/UserMiner/getMinerList', [UserMinerController::class, 'getMinerList'])->name('UserMiner.getMinerList');
     Route::post('/UserMiner/getLevelMiner', [UserMinerController::class, 'getLevelMiner'])->name('UserMiner.getLevelMiner');
     Route::post('/UserMiner/changeLevel', [UserMinerController::class, 'changeLevel'])->name('UserMiner.changeLevel');
+    Route::post('/UserMiner/delMiner', [UserMinerController::class, 'delMiner'])->name('UserMiner.delMiner');
 });

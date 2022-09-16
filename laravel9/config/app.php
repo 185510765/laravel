@@ -177,6 +177,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         // 自己添加
+        // App\Providers\TelescopeServiceProvider::class,
         Fruitcake\Cors\CorsServiceProvider::class,
 
     ],

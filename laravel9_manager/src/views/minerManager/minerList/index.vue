@@ -206,6 +206,9 @@
               >
                 修改等级
               </el-button>
+              <el-button type="text" @click="delMiner(scope.row.id)">
+                删除
+              </el-button>
             </template>
           </el-table-column>
         </el-table>

@@ -236,5 +236,19 @@ export default {
       if (data) {
       }
     },
+
+    // 删除矿工
+    delMiner(id) {
+      this.$baseConfirm('确定要删除当前矿工吗？', '删除提示', async () => {
+        const params = {
+          id: id,
+        };
+        const { data } = await minerList.delMiner(params);
+        if (data) {
+          this.$baseMessage('删除成功！', 'success');
+          this.getMinerList();
+        }
+      });
+    },
   },
 };

@@ -4,9 +4,12 @@ namespace App\Models\manager;
 
 use App\Models\manager\BaseModel;
 use App\Models\manager\User;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UserMiner extends BaseModel
 {
+    use SoftDeletes;
+
     protected $table      = 'user_miner';
     protected $primaryKey = 'id';
 

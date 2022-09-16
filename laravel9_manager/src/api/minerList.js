@@ -30,3 +30,11 @@ export function testGold(data) {
     data,
   });
 }
+
+export function delMiner(data) {
+  return request({
+    url: '/manager/UserMiner/delMiner',
+    method: 'post',
+    data,
+  });
+}
