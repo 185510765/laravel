@@ -7,7 +7,7 @@ use App\Services\manager\SysConfigService;
 
 class UserMinerService
 {
-    public function queryLevelMiner()
+    public static function queryLevelMiner()
     {
         $map[] = ['button_status', '<>', 2];
 
@@ -29,7 +29,7 @@ class UserMinerService
         return success($countAry);
     }
 
-    public function queryMinerList($params)
+    public static function queryMinerList($params)
     {
         // $paginate = UserMiner::where($map)->with('user:id,nick_name,avatar_url,open_id,union_id')->orderBy('id', 'desc')->paginate($params['size']);
 
@@ -69,7 +69,7 @@ class UserMinerService
      * @param {*} $params
      * @return {*}
      */
-    public function changeLevelDetails($params)
+    public static function changeLevelDetails($params)
     {
         // 1、需要矿工的配置的属性
         $sysConfig    = SysConfigService::getSysConfig();
@@ -108,7 +108,7 @@ class UserMinerService
      * @param {int} $scope_sum 矿工属性得分之和
      * @return {*}
      */
-    protected function getMinerAttr($scope_sum, $miner_config)
+    protected static function getMinerAttr($scope_sum, $miner_config)
     {
         foreach ($miner_config as $key => $value) {
             if ($scope_sum >= $value['min'] && $scope_sum <= $value['max']) {

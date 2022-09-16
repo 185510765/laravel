@@ -74,6 +74,7 @@ class SysUserController extends Controller
     // 退出
     public function logout()
     {
+        // 撤销当前用户的所有令牌
         auth()->user()->tokens()->delete();
 
         return success();

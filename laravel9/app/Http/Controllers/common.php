@@ -56,3 +56,36 @@ function randomSplit($minerScopeSum, $times, $min, $max)
 
     return $resArray;
 }
+
+/**
+ * 获取本周所有日期
+ */
+function get_week($time = '', $format = 'Y-m-d')
+{
+    $time = $time != '' ? $time : time();
+    //获取当前周几
+    $week = date('w', $time);
+    $date = [];
+    for ($i = 1; $i <= 7; $i++) {
+        $diff     = (int) ($i - $week);
+        $date[$i] = date($format, strtotime('+' . $diff . ' days', $time));
+    }
+
+    return array_values($date);
+}
+
+/**
+ * 获取最近七天所有日期
+ */
+function get_weeks($time = '', $format = 'Y-m-d')
+{
+    $time = $time != '' ? $time : time();
+    //组合数据
+    $date = [];
+    for ($i = 1; $i <= 7; $i++) {
+        $diff     = (int) ($i - 7);
+        $date[$i] = date($format, strtotime('+' . $diff . ' days', $time));
+    }
+
+    return array_values($date);
+}

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 class SysUserService
 {
     // 校验登录
-    public function checkLogin($params, $sysUser)
+    public static function checkLogin($params, $sysUser)
     {
         // 验证码
         if (!captcha_api_check($params["code"], $params["key"], 'custom')) {
@@ -29,7 +29,7 @@ class SysUserService
     }
 
     // 登录成功后的操作
-    public function loginSuccessTodo(SysUser $sysUser)
+    public static function loginSuccessTodo(SysUser $sysUser)
     {
 
     }
