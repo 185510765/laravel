@@ -5,14 +5,9 @@ namespace App\Http\Controllers\manager;
 use App\Http\Controllers\Controller;
 use App\Models\manager\User;
 use Illuminate\Support\Carbon;
-use Elasticsearch\ClientBuilder;
 
 class IndexController extends Controller
 {
-    $client = ClientBuilder::create()->build();
-
-    exit;
-
     // 获取首页初始数据
     public function getInitData()
     {
