@@ -15,7 +15,8 @@
         "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.5",
         "medz/cors": "^1.5",
-        "mews/captcha": "^3.2"
+        "mews/captcha": "^3.2",
+        "elasticsearch/elasticsearch": "~6.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
