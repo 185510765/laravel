@@ -11,6 +11,8 @@ class IndexController extends Controller
 {
     $client = ClientBuilder::create()->build();
 
+    exit;
+
     // 获取首页初始数据
     public function getInitData()
     {
