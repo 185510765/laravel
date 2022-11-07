@@ -58,6 +58,12 @@ class RouteServiceProvider extends ServiceProvider
                 ->middleware('admin')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/admin.php'));
+
+            // 自己添加
+            Route::prefix('game')
+                ->middleware('manager')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/game.php'));
         });
     }
 
