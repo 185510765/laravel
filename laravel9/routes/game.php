@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\game\RoleController;
+use App\Http\Controllers\game\UserController;
+use App\Http\Controllers\game\UserRoleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,5 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 // Route::middleware(['cors', 'auth:sanctum'])->group(function () {
 Route::middleware(['cors'])->group(function () {
-    Route::get('/Role/getRoleInitData', [RoleController::class, 'getRoleInitData']);
+    Route::get('/User/getUserInitData', [UserController::class, 'getUserInitData']);
+
+    Route::get('/UserRole/getRoleInitData', [UserRoleController::class, 'getRoleInitData']);
 });
