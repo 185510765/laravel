@@ -4,6 +4,8 @@ namespace App\Http\Controllers\game;
 
 use App\Http\Controllers\game\BaseController;
 use App\Http\Requests\common\CheckIdRequest;
+use App\Http\Requests\game\User\LoginRequest;
+use App\Models\game\User;
 
 class UserController extends BaseController
 {
@@ -11,23 +13,31 @@ class UserController extends BaseController
      * 登录
      * @return {*}
      */
-    public function login()
-    {}
+    public function login(LoginRequest $request)
+    {
+        $params = $request->input();
+
+        $user = User::where('username', $params['username'])->first();
+
+        $token = 'Bearer ' . $user->createToken($user->username)->plainTextToken;
+        
+        return success([
+            'Authorization' => $token,
+        ]);
+    }
 
     /**
      * 获取用户初始数据
-     * 角色列表、
+     * 用户数据、角色列表、
      * @return {*}
      */
     public function getUserInitData(CheckIdRequest $request)
     {
         $params = $request->input();
-        dump($params);
 
-        // $paginate = UserMiner::where($map)->with('user:id,nick_name,avatar_url,open_id,union_id')->orderBy('id', 'desc')->paginate($params['size']);
-        // $list = User::
+        $user = User::with('userRole:id,user_id,name,created_at')->select(['id', 'username', 'created_at'])->find($params['id']);
 
-        return success();
+        return success($user);
     }
 
 }

@@ -2,17 +2,17 @@
 
 function restful($code, $msg, $data = [])
 {
-    return json_encode([
-        'code'    => $code,
-        'message' => $msg,
-        'data'    => $data,
-    ], JSON_UNESCAPED_UNICODE);
-
-    // return response()->json([
+    // return json_encode([
     //     'code'    => $code,
     //     'message' => $msg,
     //     'data'    => $data,
-    // ]);
+    // ], JSON_UNESCAPED_UNICODE);
+
+    return response()->json([
+        'code'    => $code,
+        'message' => $msg,
+        'data'    => $data,
+    ]);
 }
 
 function success($data = [])
