@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-// Route::middleware(['cors', 'auth:sanctum'])->group(function () {
-Route::middleware(['cors'])->group(function () {
-    Route::post('/User/login', [UserController::class, 'login']);
+Route::middleware(['cors', 'auth:sanctum'])->group(function () {
+// Route::middleware(['cors'])->group(function () {
+    Route::post('/User/login', [UserController::class, 'login'])->withoutMiddleware(['auth:sanctum']);
     Route::get('/User/getUserInitData', [UserController::class, 'getUserInitData']);
 
     Route::get('/UserRole/getRoleInitData', [UserRoleController::class, 'getRoleInitData']);

@@ -50,8 +50,8 @@ class Kernel extends HttpKernel
             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             \Fruitcake\Cors\HandleCors::class,
 
-            // 'throttle:api',
-            // \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            'throttle:api',
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
         'admin'   => [
@@ -63,9 +63,8 @@ class Kernel extends HttpKernel
         'game'    => [
             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             \Fruitcake\Cors\HandleCors::class,
-
-            // 'throttle:api',
-            // \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            'throttle:api',
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
 

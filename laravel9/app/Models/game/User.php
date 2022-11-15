@@ -4,10 +4,11 @@ namespace App\Models\game;
 
 use App\Models\game\BaseModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends BaseModel
 {
-    use SoftDeletes;
+    use HasApiTokens,SoftDeletes;
 
     protected $table      = 'user';
     protected $primaryKey = 'id';
