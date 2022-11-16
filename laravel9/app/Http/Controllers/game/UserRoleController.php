@@ -15,11 +15,11 @@ class UserRoleController extends BaseController
      *      3、都没有则代表角色数据损坏，玩家重新创建角色
      * @return {*}
      */
-    public function getRoleInitData(CheckIdRequest $request)
+    public function getRoleInfo(CheckIdRequest $request)
     {
         $params = $request->input();
 
-        return UserRoleService::getRoleInitData($params['id']);
+        return UserRoleService::getRoleInfo($params['id']);
 
         return success();
     }

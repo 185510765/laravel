@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Redis;
 
 class UserRoleService
 {
-    public static function getRoleInitData($id)
+    public static function getRoleInfo($id)
     {
         // 1、查询缓存redis
         $redisKey = 'userRole:' . $id;

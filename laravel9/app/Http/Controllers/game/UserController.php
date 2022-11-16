@@ -31,7 +31,7 @@ class UserController extends BaseController
      * 用户数据、角色列表、
      * @return {*}
      */
-    public function getUserInitData(CheckIdRequest $request)
+    public function getUserInfo(CheckIdRequest $request)
     {
         $params = $request->input();
 
