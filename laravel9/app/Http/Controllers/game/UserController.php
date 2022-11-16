@@ -27,7 +27,7 @@ class UserController extends BaseController
     }
 
     /**
-     * 获取用户初始数据
+     * 获取用户数据
      * 用户数据、角色列表、
      * @return {*}
      */
