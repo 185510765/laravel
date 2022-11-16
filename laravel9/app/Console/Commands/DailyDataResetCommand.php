@@ -6,14 +6,14 @@ use App\Models\game\UserRole;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Redis;
 
-class DailyDataReset extends Command
+class DailyDataResetCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'DailyDataReset';
+    protected $signature = 'DailyDataResetCommand';
 
     /**
      * The console command description.
@@ -47,7 +47,7 @@ class DailyDataReset extends Command
 
             $bRet = Redis::hexists($redisKey, 'tired_value');
             if ($bRet) {
-                Redis::hset($redisKey, 'tired_value', '160');
+                Redis::hset($redisKey, 'tired_value', 160);
             }
         }
 

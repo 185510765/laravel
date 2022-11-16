@@ -22,13 +22,13 @@ class Schedule
 {
     use Macroable;
 
-    const SUNDAY = 0;
-    const MONDAY = 1;
-    const TUESDAY = 2;
+    const SUNDAY    = 0;
+    const MONDAY    = 1;
+    const TUESDAY   = 2;
     const WEDNESDAY = 3;
-    const THURSDAY = 4;
-    const FRIDAY = 5;
-    const SATURDAY = 6;
+    const THURSDAY  = 4;
+    const FRIDAY    = 5;
+    const SATURDAY  = 6;
 
     /**
      * All of the events on the schedule.
@@ -77,7 +77,7 @@ class Schedule
     {
         $this->timezone = $timezone;
 
-        if (! class_exists(Container::class)) {
+        if (!class_exists(Container::class)) {
             throw new RuntimeException(
                 'A container implementation is required to use the scheduler. Please install the illuminate/container package.'
             );
@@ -86,12 +86,12 @@ class Schedule
         $container = Container::getInstance();
 
         $this->eventMutex = $container->bound(EventMutex::class)
-                                ? $container->make(EventMutex::class)
-                                : $container->make(CacheEventMutex::class);
+        ? $container->make(EventMutex::class)
+        : $container->make(CacheEventMutex::class);
 
         $this->schedulingMutex = $container->bound(SchedulingMutex::class)
-                                ? $container->make(SchedulingMutex::class)
-                                : $container->make(CacheSchedulingMutex::class);
+        ? $container->make(SchedulingMutex::class)
+        : $container->make(CacheSchedulingMutex::class);
     }
 
     /**
@@ -166,7 +166,7 @@ class Schedule
     protected function dispatchToQueue($job, $queue, $connection)
     {
         if ($job instanceof Closure) {
-            if (! class_exists(CallQueuedClosure::class)) {
+            if (!class_exists(CallQueuedClosure::class)) {
                 throw new RuntimeException(
                     'To enable support for closure jobs, please install the illuminate/queue package.'
                 );
@@ -196,11 +196,11 @@ class Schedule
      */
     protected function dispatchUniqueJobToQueue($job, $queue, $connection)
     {
-        if (! Container::getInstance()->bound(Cache::class)) {
+        if (!Container::getInstance()->bound(Cache::class)) {
             throw new RuntimeException('Cache driver not available. Scheduling unique jobs not supported.');
         }
 
-        if (! (new UniqueLock(Container::getInstance()->make(Cache::class)))->acquire($job)) {
+        if (!(new UniqueLock(Container::getInstance()->make(Cache::class)))->acquire($job)) {
             return;
         }
 
@@ -230,7 +230,7 @@ class Schedule
     public function exec($command, array $parameters = [])
     {
         if (count($parameters)) {
-            $command .= ' '.$this->compileParameters($parameters);
+            $command .= ' ' . $this->compileParameters($parameters);
         }
 
         $this->events[] = $event = new Event($this->eventMutex, $command, $this->timezone);
@@ -251,7 +251,7 @@ class Schedule
                 return $this->compileArrayInput($key, $value);
             }
 
-            if (! is_numeric($value) && ! preg_match('/^(-.$|--.*)/i', $value)) {
+            if (!is_numeric($value) && !preg_match('/^(-.$|--.*)/i', $value)) {
                 $value = ProcessUtils::escapeArgument($value);
             }
 
