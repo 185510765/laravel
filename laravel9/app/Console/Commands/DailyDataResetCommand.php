@@ -34,15 +34,15 @@ class DailyDataResetCommand extends Command
 
     /**
      * Execute the console command.
-     *
+     * 重置数据
      * @return int
      */
     public function handle()
     {
         // 1、重置redis里面数据（疲劳值、）
-        $redisKeyAry = Redis::keys('userRole:*');
+        $userRoleRedisKeyAry = Redis::keys('userRole:*'); // minigame:userRole:2
 
-        foreach ($redisKeyAry as $key => $value) {
+        foreach ($userRoleRedisKeyAry as $key => $value) {
             $redisKey = substr($value, strpos($value, ':') + 1);
 
             $bRet = Redis::hexists($redisKey, 'tired_value');
