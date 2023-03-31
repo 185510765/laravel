@@ -57,7 +57,7 @@ class Curl extends Command
         $this->end   = $this->argument('end');
 
         $nowTime = time();
-        $this->info('当前时间1：' . date('Y-m-d H:i:s', $nowTime));
+        $this->info('当前时间：' . date('Y-m-d H:i:s', $nowTime));
 
         $count = DB::table('bar_code')->count();
 
