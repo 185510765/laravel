@@ -1,0 +1,30 @@
+.tab>>>.el-tabs__new-tab {
+  margin: 10px 50px 10px 10px;
+}
+
+.tab>>>.el-tabs__nav-wrap.is-scrollable {
+  padding-right: 200px;
+}
+
+.tab>>>.el-tabs__nav-next {
+  right: 160px;
+}
+
+.tabBtnGroup {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  z-index: 1;
+  padding: 2px;
+}
+
+.tabBtnGroup .btn {
+  padding: 6px 10px;
+}
+
+.game_img {
+  position: relative;
+  top: 3px;
+  width: 60px;
+  height: 60px;
+}
