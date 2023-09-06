@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 
-class UserController extends Controller
+class BarCodeController extends Controller
 {
-    //
+    // 主页面
     public function index()
     {
-        return 'guaosi';
+
     }
+
+    // 搜索
+
 }
